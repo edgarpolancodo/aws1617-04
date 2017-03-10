@@ -1,0 +1,23 @@
+{
+  "name": "aws1617-g4",
+  "version": "1.0.0",
+  "description": "Proyecto de taller de micro-servicio de grupo 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebossedgar/aws1617-g4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebossedgar/aws1617-g4/issues"
+  },
+  "homepage": "https://github.com/thebossedgar/aws1617-g4#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
