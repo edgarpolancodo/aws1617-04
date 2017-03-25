@@ -15,7 +15,7 @@ var base = '/api/v1';
 var app = express();
 app.use(bodyParser.json());
 
-//Metodo para raiz de elementos 
+////REST fot Root elements
 
 app.get(base + '/universities', (req, res) => {
     console.log('GET universities');
@@ -23,7 +23,7 @@ app.get(base + '/universities', (req, res) => {
     db.find({}, (err, universities) => {
         res.send(universities);
     });
-    
+
 });
 
 app.post(base + '/universities', (req, res) => {
@@ -33,20 +33,21 @@ app.post(base + '/universities', (req, res) => {
     db.insert(university);
 
     res.sendStatus(201);
-    
+
 });
 
 app.delete(base + '/universities', (req, res) => {
     console.log('DELETE universities');
 
-    db.remove({}, {}, (err, numRemoved) => {
+    db.remove({}, {
+        multi: true
+    }, (err, numRemoved) => {
         res.sendStatus(200);
     });
 
 });
 
-
-//Metodos para elemento especifico
+//REST for specific elements
 
 app.get(base + '/universities/:name', (req, res) => {
     res.sendStatus(200);
@@ -65,13 +66,24 @@ app.put(base + '/universities/:name', (req, res) => {
     console.log('PUT university');
 });
 
-//Inicializador de servicio
+//Server Starter
+
 app.listen(port, () => {
     console.log('Server is running for 42K...' + process.env.IP)
+    loadDummyData();
 });
 
-//Pagina inicial
+//Home Page
 app.get('/', (req, res) => {
-    res.send('<html><body><h1>Pagina inicial</h1></body></html>');
+    res.send('<html><body><title>AWS - Universities</title><h1>Home Page</h1></body></html>');
     console.log('New request');
 });
+
+function loadDummyData() {
+    var sourceFile = require('./dummyData.js');
+
+    sourceFile.dummyData.forEach(function(university, index) {
+        db.insert(university);
+    });
+
+}
