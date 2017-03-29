@@ -1,0 +1,45 @@
+<html ng-app="UniversityListApp">
+    <head>
+        <title>Universities App</title>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+        <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="university-list-app.js"></script>
+        <script type="text/javascript" src="list-ctrl.js"></script>
+    </head>
+    <body>
+        
+        
+        <h1>Universities App</h1>
+        <div ng-controller="ListCtrl">
+            <form name="newUniversityForm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Acronym</th>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-control" type="text" ng-model="newUniversity.acronym"/></td>
+                            <td><input class="form-control" type="text" ng-model="newUniversity.name"/></td>
+                            <td><input class="form-control" type="text" ng-model="newUniversity.url"/></td>
+                            <td><input class="form-control" type="text" ng-model="newUniversity.country"/></td>
+                        </tr>
+                        <tr ng-repeat="university in universities">
+                            <td>{{university.acronym}}</td>
+                            <td>{{university.name}}</td>
+                            <td>{{university.url}}</td>
+                            <td>{{university.country}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+    
+</html>

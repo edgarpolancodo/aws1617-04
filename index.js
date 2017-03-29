@@ -13,6 +13,7 @@ var port = (process.env.PORT || 3000);
 var base = '/api/v1';
 
 var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 ////REST fot Root elements
