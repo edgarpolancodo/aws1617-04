@@ -50,19 +50,39 @@ app.delete(base + '/universities', (req, res) => {
 //REST for specific elements
 
 app.get(base + '/universities/:name', (req, res) => {
-    res.sendStatus(200);
     var name = req.params.name;
+    db.find({acronym: name}, function(err, univ){
+        if(univ.length == 0){
+            res.sendStatus(404);
+        }else{
+            res.send(univ[0]);
+        }
+    });
     console.log('GET university');
 });
 
 app.delete(base + '/universities/:name', (req, res) => {
-    res.sendStatus(200);
     var name = req.params.name;
-    console.log('DELETE university');
+    db.remove({acronym : name}, function(err, numRemoved){
+        if(numRemoved == 0){
+            res.sendStatus(404);
+        }else{
+            console.log('DELETE university '+name);
+            res.sendStatus(200);
+        }
+    });
 });
 app.put(base + '/universities/:name', (req, res) => {
-    res.sendStatus(200);
     var name = req.params.name;
+    var updatedUniversity = req.body;
+    db.update({acronym : name}, updatedUniversity, function(err, numUpdated){
+        if(numUpdated == 0){
+            res.sendStatus(404);
+        }else{
+            console.log('PUT university '+name);
+            res.sendStatus(200);
+        }
+    });
     console.log('PUT university');
 });
 
