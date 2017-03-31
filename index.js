@@ -68,8 +68,12 @@ app.delete(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     
     universities.remove(name,(err,numRemoved)=>{
-        res.sendStatus(200);
-        console.log('DELETE university '+name);
+        if(numRemoved==0){
+            res.sendStatus(404);
+        }else{
+            console.log('DELETE university '+name);
+            res.sendStatus(200);
+        }
     });
 });
 app.put(base + '/universities/:name', (req, res) => {
