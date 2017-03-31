@@ -1,13 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var dataStore = require('nedb');
+/*var dataStore = require('nedb');
 var dbFileName = path.join(__dirname, 'Universities.json');
 
 var db = new dataStore({
     filename: dbFileName,
     autoload: true
-});
+});*/
+
+var universities = require("./universities.js");
 
 var port = (process.env.PORT || 3000);
 var base = '/api/v1';
@@ -21,8 +23,8 @@ app.use(bodyParser.json());
 app.get(base + '/universities', (req, res) => {
     console.log('GET universities');
 
-    db.find({}, (err, universities) => {
-        res.send(universities);
+    universities.allUniversities((err,universities)=>{
+        res.send(universities);    
     });
 
 });
@@ -31,7 +33,7 @@ app.post(base + '/universities', (req, res) => {
     console.log('POST university');
 
     var university = req.body;
-    db.insert(university);
+    universities.add(university);
 
     res.sendStatus(201);
 
@@ -40,10 +42,8 @@ app.post(base + '/universities', (req, res) => {
 app.delete(base + '/universities', (req, res) => {
     console.log('DELETE universities');
 
-    db.remove({}, {
-        multi: true
-    }, (err, numRemoved) => {
-        res.sendStatus(200);
+    universities.removeAll((err,numRemoved)=>{
+        res.sendStatus(200);    
     });
 
 });
@@ -52,11 +52,13 @@ app.delete(base + '/universities', (req, res) => {
 
 app.get(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    db.find({acronym: name}, function(err, univ){
-        if(univ.length == 0){
+    
+    universities.get(name,(err,universities_)=>{
+        if (universities_.length === 0) {
             res.sendStatus(404);
-        }else{
-            res.send(univ[0]);
+        }
+        else {
+            res.send(universities_[0]);  
         }
     });
     console.log('GET university');
@@ -64,27 +66,24 @@ app.get(base + '/universities/:name', (req, res) => {
 
 app.delete(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    db.remove({acronym : name}, function(err, numRemoved){
-        if(numRemoved == 0){
-            res.sendStatus(404);
-        }else{
-            console.log('DELETE university '+name);
-            res.sendStatus(200);
-        }
+    
+    universities.remove(name,(err,numRemoved)=>{
+        res.sendStatus(200);
+        console.log('DELETE university '+name);
     });
 });
 app.put(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     var updatedUniversity = req.body;
-    db.update({acronym : name}, updatedUniversity, function(err, numUpdated){
-        if(numUpdated == 0){
-            res.sendStatus(404);
-        }else{
+    universities.update(name, updatedUniversity ,(err,numUpdates) => {
+        if (numUpdates === 0) {
+            res.sendStatus(404);    
+        } else {
             console.log('PUT university '+name);
-            res.sendStatus(200);
+            res.sendStatus(200);    
         }
+        
     });
-    console.log('PUT university');
 });
 
 //Run in Postman
@@ -121,7 +120,7 @@ function loadDummyData() {
     var sourceFile = require('./dummyData.js');
 
     sourceFile.dummyData.forEach(function(university, index) {
-        db.insert(university);
+        universities.add(university);
     });
 
 }
