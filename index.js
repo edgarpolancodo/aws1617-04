@@ -87,6 +87,24 @@ app.put(base + '/universities/:name', (req, res) => {
     console.log('PUT university');
 });
 
+//Run in Postman
+app.get(base + '/tests', (req, res) => {
+
+    res.send('<html><body><title>AWS - Universities</title><h1>Run in Postman ;)</h1>'+
+    '<div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="09c3562440e997621d12"></div>'+
+    '<script type="text/javascript">'+
+      '(function (p,o,s,t,m,a,n) {'+
+        '!p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });'+
+        '!o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild(('+
+          '(n = o.createElement("script")),'+
+          '(n.id = s+t), (n.async = 1), (n.src = m), n'+
+        '));'+
+      '}(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));'+
+    '</script></body></html>');
+    console.log('Run in Postman');
+
+});
+
 //Server Starter
 
 app.listen(port, () => {
@@ -96,7 +114,6 @@ app.listen(port, () => {
 
 //Home Page
 app.get('/', (req, res) => {
-    res.send('<html><body><title>AWS - Universities</title><h1>Home Page</h1></body></html>');
     console.log('New request');
 });
 
