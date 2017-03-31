@@ -24,14 +24,14 @@ Universities.prototype.removeAll = function(callback) {
 };
 
 Universities.prototype.get = function(name, callback) {
-    return db.find({name:name}, callback);
+    return db.find({acronym:name}, callback);
 };
 
 Universities.prototype.remove = function(name, callback) {
-    return db.remove({name:name},{ multi: true}, callback);
+    return db.remove({acronym:name},{ multi: true}, callback);
 };
 
 Universities.prototype.update = function(name, updatedContact, callback) {
-    return db.update({name:name},updatedContact,{}, callback);
+    return db.update({acronym:name},updatedContact,{}, callback);
 };
 module.exports = new Universities();
