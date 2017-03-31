@@ -13,6 +13,18 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
         });
         
     };
+    $scope.delUniversity = function (acronym){
+        $http.delete("/api/v1/universities/"+acronym).then(function (){
+            refresh();
+        });
+        
+    };
+    $scope.delUniversities = function (acronym){
+        $http.delete("/api/v1/universities").then(function (){
+            refresh();
+        });
+        
+    };
     
     refresh();
     

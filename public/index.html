@@ -14,6 +14,7 @@
         <h1>Universities App</h1>
         <div ng-controller="ListCtrl">
             <form name="newUniversityForm">
+                <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -36,6 +37,7 @@
                             <td>{{university.name}}</td>
                             <td>{{university.url}}</td>
                             <td>{{university.country}}</td>
+                            <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
