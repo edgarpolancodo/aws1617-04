@@ -33,9 +33,16 @@ app.post(base + '/universities', (req, res) => {
     console.log('POST university');
 
     var university = req.body;
-    universities.add(university);
 
-    res.sendStatus(201);
+    universities.get(name,(err, universities) => {
+        if (universities.length == 0) {
+            universities.add(university);
+            res.sendStatus(201);
+        }
+        else {
+            res.sendStatus(409);
+        }
+    });
 
 });
 
@@ -52,7 +59,7 @@ app.delete(base + '/universities', (req, res) => {
 
 app.get(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    
+  
     universities.get(name,(err,universities_)=>{
         if (universities_.length === 0) {
             res.sendStatus(404);
@@ -66,16 +73,18 @@ app.get(base + '/universities/:name', (req, res) => {
 
 app.delete(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    
+  
     universities.remove(name,(err,numRemoved)=>{
         if(numRemoved==0){
             res.sendStatus(404);
-        }else{
-            console.log('DELETE university '+name);
+        }
+        else {
+            console.log('DELETE university ' + name);
             res.sendStatus(200);
         }
     });
 });
+
 app.put(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     var updatedUniversity = req.body;
@@ -93,17 +102,17 @@ app.put(base + '/universities/:name', (req, res) => {
 //Run in Postman
 app.get(base + '/tests', (req, res) => {
 
-    res.send('<html><body><title>AWS - Universities</title><h1>Run in Postman ;)</h1>'+
-    '<div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="09c3562440e997621d12"></div>'+
-    '<script type="text/javascript">'+
-      '(function (p,o,s,t,m,a,n) {'+
-        '!p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });'+
-        '!o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild(('+
-          '(n = o.createElement("script")),'+
-          '(n.id = s+t), (n.async = 1), (n.src = m), n'+
-        '));'+
-      '}(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));'+
-    '</script></body></html>');
+    res.send('<html><body><title>AWS - Universities</title><h1>Run in Postman ;)</h1>' +
+        '<div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="09c3562440e997621d12"></div>' +
+        '<script type="text/javascript">' +
+        '(function (p,o,s,t,m,a,n) {' +
+        '!p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });' +
+        '!o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((' +
+        '(n = o.createElement("script")),' +
+        '(n.id = s+t), (n.async = 1), (n.src = m), n' +
+        '));' +
+        '}(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));' +
+        '</script></body></html>');
     console.log('Run in Postman');
 
 });
@@ -112,6 +121,7 @@ app.get(base + '/tests', (req, res) => {
 
 app.listen(port, () => {
     console.log('Server is running for 42K...' + process.env.IP)
+
     loadDummyData();
 });
 
@@ -120,11 +130,30 @@ app.get('/', (req, res) => {
     console.log('New request');
 });
 
+//Help functions
+
 function loadDummyData() {
     var sourceFile = require('./dummyData.js');
 
     sourceFile.dummyData.forEach(function(university, index) {
         universities.add(university);
+    });
+}
+
+function resourceExists(name) {
+
+    db.find({
+        acronym: name
+    }, (err, contacts) => {
+        if (contacts.length == 0) {
+            console.log('No existe');
+            return false;
+        }
+        else {
+            console.log('Si existe');
+            return true;
+        }
+
     });
 
 }
