@@ -1,13 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var dataStore = require('nedb');
+/*var dataStore = require('nedb');
 var dbFileName = path.join(__dirname, 'Universities.json');
 
 var db = new dataStore({
     filename: dbFileName,
     autoload: true
-});
+});*/
+
+var universities = require("./universities.js");
 
 var port = (process.env.PORT || 3000);
 var base = '/api/v1';
@@ -21,8 +23,8 @@ app.use(bodyParser.json());
 app.get(base + '/universities', (req, res) => {
     console.log('GET universities');
 
-    db.find({}, (err, universities) => {
-        res.send(universities);
+    universities.allUniversities((err,universities)=>{
+        res.send(universities);    
     });
 
 });
@@ -32,11 +34,9 @@ app.post(base + '/universities', (req, res) => {
 
     var university = req.body;
 
-    db.find({
-        acronym: university.acronym
-    }, (err, universities) => {
+    universities.get(name,(err, universities) => {
         if (universities.length == 0) {
-            db.insert(university);
+            universities.add(university);
             res.sendStatus(201);
         }
         else {
@@ -49,10 +49,8 @@ app.post(base + '/universities', (req, res) => {
 app.delete(base + '/universities', (req, res) => {
     console.log('DELETE universities');
 
-    db.remove({}, {
-        multi: true
-    }, (err, numRemoved) => {
-        res.sendStatus(200);
+    universities.removeAll((err,numRemoved)=>{
+        res.sendStatus(200);    
     });
 
 });
@@ -61,14 +59,13 @@ app.delete(base + '/universities', (req, res) => {
 
 app.get(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    db.find({
-        acronym: name
-    }, function(err, univ) {
-        if (univ.length == 0) {
+  
+    universities.get(name,(err,universities_)=>{
+        if (universities_.length === 0) {
             res.sendStatus(404);
         }
         else {
-            res.send(univ[0]);
+            res.send(universities_[0]);  
         }
     });
     console.log('GET university');
@@ -76,10 +73,9 @@ app.get(base + '/universities/:name', (req, res) => {
 
 app.delete(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
-    db.remove({
-        acronym: name
-    }, function(err, numRemoved) {
-        if (numRemoved == 0) {
+  
+    universities.remove(name,(err,numRemoved)=>{
+        if(numRemoved==0){
             res.sendStatus(404);
         }
         else {
@@ -92,18 +88,15 @@ app.delete(base + '/universities/:name', (req, res) => {
 app.put(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     var updatedUniversity = req.body;
-    db.update({
-        acronym: name
-    }, updatedUniversity, function(err, numUpdated) {
-        if (numUpdated == 0) {
-            res.sendStatus(404);
+    universities.update(name, updatedUniversity ,(err,numUpdates) => {
+        if (numUpdates === 0) {
+            res.sendStatus(404);    
+        } else {
+            console.log('PUT university '+name);
+            res.sendStatus(200);    
         }
-        else {
-            console.log('PUT university ' + name);
-            res.sendStatus(200);
-        }
+        
     });
-    console.log('PUT university');
 });
 
 //Run in Postman
@@ -143,7 +136,7 @@ function loadDummyData() {
     var sourceFile = require('./dummyData.js');
 
     sourceFile.dummyData.forEach(function(university, index) {
-        db.insert(university);
+        universities.add(university);
     });
 }
 

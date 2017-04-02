@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
         <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
         <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="university-list-app.js"></script>
         <script type="text/javascript" src="list-ctrl.js"></script>
     </head>
@@ -14,6 +15,7 @@
         <h1>Universities App</h1>
         <div ng-controller="ListCtrl">
             <form name="newUniversityForm">
+                <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,16 +27,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input class="form-control" type="text" ng-model="newUniversity.acronym"/></td>
-                            <td><input class="form-control" type="text" ng-model="newUniversity.name"/></td>
-                            <td><input class="form-control" type="text" ng-model="newUniversity.url"/></td>
-                            <td><input class="form-control" type="text" ng-model="newUniversity.country"/></td>
+                            <td><input class="form-control" type="text" required ng-model="newUniversity.acronym"/></td>
+                            <td><input class="form-control" type="text" required ng-model="newUniversity.name"/></td>
+                            <td><input class="form-control" type="url" required ng-model="newUniversity.url"/></td>
+                            <td><input class="form-control" type="text" required ng-model="newUniversity.country"/></td>
+                            <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add">Add</button><button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button></td>
                         </tr>
                         <tr ng-repeat="university in universities">
                             <td>{{university.acronym}}</td>
                             <td>{{university.name}}</td>
                             <td>{{university.url}}</td>
                             <td>{{university.country}}</td>
+                            <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
+                            <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
