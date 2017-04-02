@@ -34,7 +34,7 @@ app.post(base + '/universities', (req, res) => {
 
     var university = req.body;
 
-    universities.get(name,(err, universities) => {
+    universities.get(university.acronym,(err, universities) => {
         if (universities.length == 0) {
             universities.add(university);
             res.sendStatus(201);
