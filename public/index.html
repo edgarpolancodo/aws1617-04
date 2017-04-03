@@ -1,50 +1,79 @@
 <html ng-app="UniversityListApp">
-    <head>
-        <title>Universities App</title>
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
-        <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
-        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="university-list-app.js"></script>
-        <script type="text/javascript" src="list-ctrl.js"></script>
-    </head>
-    <body>
-        
-        
-        <h1>Universities App</h1>
-        <div ng-controller="ListCtrl">
-            <form name="newUniversityForm">
-                <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Acronym</th>
-                            <th>Name</th>
-                            <th>URL</th>
-                            <th>Country</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input class="form-control" type="text" required ng-model="newUniversity.acronym"/></td>
-                            <td><input class="form-control" type="text" required ng-model="newUniversity.name"/></td>
-                            <td><input class="form-control" type="url" required ng-model="newUniversity.url"/></td>
-                            <td><input class="form-control" type="text" required ng-model="newUniversity.country"/></td>
-                            <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add">Add</button><button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button></td>
-                        </tr>
-                        <tr ng-repeat="university in universities">
-                            <td>{{university.acronym}}</td>
-                            <td>{{university.name}}</td>
-                            <td>{{university.url}}</td>
-                            <td>{{university.country}}</td>
-                            <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
-                            <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </body>
-    
+
+<head>
+    <title>Universities App</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="university-list-app.js"></script>
+    <script type="text/javascript" src="list-ctrl.js"></script>
+    <link rel="icon" href="assets/favicon.png">
+
+    <style>
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <img src="assets/favicon.png" alt="logo" style="float:left; with:100px; height:100px; "/>
+    <h1 style="position:relative; top:30; ">Universities App</h1>
+    <br>
+    <br>
+    <br>
+    <div ng-controller="ListCtrl">
+        <form name="newUniversityForm">
+            <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Acronym</th>
+                        <th>Name</th>
+                        <th>URL</th>
+                        <th>Country</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td><input class="form-control" name="acronym" type="text" ng-required="true" ng-model="newUniversity.acronym" />
+                            <div ng-show="newUniversityForm.acronym.$touched && newUniversityForm.acronym.$invalid ">
+                                <small style="color: red; display: block; text-align: center;">The acronym must be at least 5 characters</small>
+                            </div>
+                        </td>
+
+                        <td><input class="form-control" name="name" type="text" ng-required="true" ng-model="newUniversity.name" />
+                            <div ng-show="newUniversityForm.name.$touched && newUniversityForm.name.$invalid ">
+                                <small style="color: red; display: block; text-align: center;">The name must be at least 5 characters</small>
+                            </div>
+                        </td>
+
+                        <td><input class="form-control" type="url" required ng-model="newUniversity.url" /></td>
+
+                        <td><input class="form-control" type="text" required ng-model="newUniversity.country" /></td>
+
+                        <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add" ng-disabled="newUniversityForm.$invalid">Add</button>
+                            <button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="university in universities">
+                        <td>{{university.acronym}}</td>
+                        <td>{{university.name}}</td>
+                        <td>{{university.url}}</td>
+                        <td>{{university.country}}</td>
+                        <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
+                        <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+
 </html>

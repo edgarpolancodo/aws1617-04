@@ -1,1 +1,1 @@
-angular.module("UniversityListApp",[]);
+angular.module("UniversityListApp", []);
