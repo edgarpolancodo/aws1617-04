@@ -1,4 +1,9 @@
-{"acronym":"intec","name":"Instituto Tecnológico de Santo Domingo","url":"http://www.intec.edu.do/","icon":"http://intec.edu.do/images/logos/logo-intec.svg","country":"Dominican Republic","cities":["Santo Domingo"],"carrers":["Ingenierí del Software","ingeniería electrónica y de comunicaciones"],"_id":"OERfF9J3ikWsb5jj"}
-{"acronym":"APEC","name":"Universidad Acción Pro Educación y Cultura","url":"https://www.unapec.edu.do/","icon":"https://www.unapec.edu.do/img/plantillas/general/cabecera/logo.png","country":"Dominican Republic","cities":["Santo Domingo"],"carrers":["Ingeníeria Sistema","Publicidad","Diseño Gráfico"],"_id":"NVDclWdPcvaj10WL"}
-{"acronym":"PUCMM","name":"Pontificia Universidad Católica Madre y Maestra","icon":"https://www.pucmm.edu.do/_catalogs/masterpage/PUCMM-Pincipal/img/logo.png","url":"https://www.pucmm.edu.do/","country":"Dominican Republic","cities":["Santo Domingo","Santiago de los Caballeros"],"carrers":["Mercadeo","Derecho"],"_id":"Ci5CGbCmAbfQIhjv"}
-{"acronym":"hola","name":"s","url":"https://www.pucmm.edu.do/","country":"sda","_id":"ihtbVMnZ92X9ESA8"}
+{"acronym":"intec","name":"Instituto Tecnológico de Santo Domingo","url":"http://www.intec.edu.do/","country":"Dominican Republic","_id":"3mDxkvhtjBp4vKlO"}
+{"acronym":"PUCMM","name":"Pontificia Universidad Católica Madre y Maestra","url":"https://www.pucmm.edu.do/","country":"Dominican Republic","_id":"BF3tqxVz0ItrzTtQ"}
+{"acronym":"APEC","name":"Universidad Acción Pro Educación y Cultura","url":"https://www.unapec.edu.do/","country":"Dominican Republic","_id":"j52EzU4rJ3splOiK"}
+{"$$deleted":true,"_id":"3mDxkvhtjBp4vKlO"}
+{"$$deleted":true,"_id":"BF3tqxVz0ItrzTtQ"}
+{"$$deleted":true,"_id":"j52EzU4rJ3splOiK"}
+{"acronym":"intec","name":"Instituto Tecnológico de Santo Domingo","url":"http://www.intec.edu.do/","country":"Dominican Republic","_id":"ATgle2YPNSNFNGdH"}
+{"acronym":"APEC","name":"Universidad Acción Pro Educación y Cultura","url":"https://www.unapec.edu.do/","country":"Dominican Republic","_id":"cytB17QyrGnrI3rH"}
+{"acronym":"PUCMM","name":"Pontificia Universidad Católica Madre y Maestra","url":"https://www.pucmm.edu.do/","country":"Dominican Republic","_id":"F5Q5iV8RaU2WqpT7"}
