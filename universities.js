@@ -1,8 +1,9 @@
+"use strict";
 var path = require('path');
-var dataStore = require('nedb');
+var DataStore = require('nedb');
 var dbFileName = path.join(__dirname, 'Universities.json');
 
-var db = new dataStore({
+var db = new DataStore({
     filename: dbFileName,
     autoload: true
 });
