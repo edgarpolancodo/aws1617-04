@@ -121,7 +121,7 @@ app.listen(port, () => {
     loadDummyData();
 });
 
-//Home Page
+//Home Page Hola
 app.get('/', () => {
     console.log('New request');
 });
