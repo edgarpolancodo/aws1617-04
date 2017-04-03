@@ -39,7 +39,6 @@ describe('universities', function() {
                 if (err) {
                     return done(err);
                 }
-
                 expect(res).to.have.lengthOf(3);
                 expect(res).to.contain.an.item.with.property('acronym', 'intec');
                 expect(res).to.contain.an.item.with.property('acronym', 'APEC');
