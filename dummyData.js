@@ -22,4 +22,4 @@ module.exports.dummyData = [{
     "country": "Dominican Republic",
     "cities": ["Santo Domingo", "Santiago de los Caballeros"],
     "carrers": ["Mercadeo", "Derecho"]
-}]
+}];
