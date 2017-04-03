@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - "6"
+
+sudo: required
+
+services:
+  - mongodb
+
+before_script:
+  - npm install grunt-cli -g
+
+script:
+  - grunt test

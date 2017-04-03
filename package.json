@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/thebossedgar/aws1617-g4.git",
-    "github": "https://github.com/thebossedgar/aws1617-g4"
+    "url": "git://github.com/AnakaTax/aws1617-g4.git",
+    "github": "https://github.com/AnakaTax/aws1617-g4"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-watch": "^1.0.0",
