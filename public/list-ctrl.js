@@ -32,7 +32,7 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
             $scope.newUniversity = response.data;
             $('#boton_add').attr("style", "display:none");
             $('#boton_edit').attr("style", "display:block");
-        });`
+        });
     };
 
     $scope.editUniversity2 = function(acronym) {
