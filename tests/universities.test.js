@@ -39,7 +39,6 @@ describe('universities', function() {
                 if (err) {
                     return done(err);
                 }
-
                 expect(res).to.have.lengthOf(3);
                 expect(res).to.contain.an.item.with.property('acronym', 'intec');
                 expect(res).to.contain.an.item.with.property('acronym', 'APEC');
@@ -48,7 +47,28 @@ describe('universities', function() {
             });
         });
     });
-    
+
     //
+    describe('#remove()', function() {
+        it('should remove the university', function(done) {
+            universities.remove('PUCMM', (err) => {
+                if (err) {
+                    return done(err);
+                }
+
+                universities.allUniversities((err, res) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    expect(res).to.have.lengthOf(2);
+                    expect(res).not.to.contain.an.item.with.property('acronym', 'PUCMM');
+                    done();
+                });
+            });
+        });
+    });
+
+
 
 });
