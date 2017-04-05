@@ -1,6 +1,5 @@
 angular.module("UniversityListApp").controller("ListCtrl", function($scope, $http) {
 
-    $scope.a = "hola";
 
     function refresh() {
         $http.get("/api/v1/universities").then(function(response) {
@@ -33,7 +32,7 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
             $scope.newUniversity = response.data;
             $('#boton_add').attr("style", "display:none");
             $('#boton_edit').attr("style", "display:block");
-        });
+        });`
     };
 
     $scope.editUniversity2 = function(acronym) {
@@ -46,6 +45,7 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
     };
 
     $scope.searchUniversity = function(acronym) {
+        $scope.university = {};
         $http.get("/api/v1/universities/" + acronym).then(function(response) {
             $scope.university = response.data;
         });
