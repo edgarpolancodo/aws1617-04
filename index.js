@@ -44,7 +44,7 @@ app.delete(base + '/universities', (req, res) => {
     console.log('DELETE universities');
 
     universities.removeAll((err, numRemoved) => {
-        console.log('Deleted:' +  numRemoved + "universities");
+        console.log('Deleted:' + numRemoved + "universities");
         res.sendStatus(200);
     });
 
@@ -54,6 +54,8 @@ app.delete(base + '/universities', (req, res) => {
 
 app.get(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
+
+    console.log(name);
 
     universities.get(name, (err, universities_) => {
         if (universities_.length === 0) {

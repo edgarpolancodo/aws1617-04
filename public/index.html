@@ -20,60 +20,130 @@
 
 <body>
 
+    <div class="container">
+        <div class="page-header">
 
-    <img src="assets/favicon.png" alt="logo" style="float:left; with:100px; height:100px; "/>
-    <h1 style="position:relative; top:30; ">Universities App</h1>
-    <br>
-    <br>
-    <br>
+            <img src="assets/favicon.png" alt="logo" style="float:left; with:100px; height:100px; " />
+            <h1 style="position:relative; top:30; ">Universities App</h1>
+            <br>
+        </div>
+    </div>
+
     <div ng-controller="ListCtrl">
-        <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
-        <form name="newUniversityForm">
-            
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Acronym</th>
-                        <th>Name</th>
-                        <th>URL</th>
-                        <th>Country</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
 
-                        <td><input class="form-control" name="acronym" type="text" ng-required="true" ng-model="newUniversity.acronym" />
-                            <div ng-show="newUniversityForm.acronym.$touched && newUniversityForm.acronym.$invalid ">
-                                <small style="color: red; display: block; text-align:center;">The acronym cannot be blank</small>
-                            </div>
-                        </td>
+        <!--All Universities-->
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">All Universities</div>
+                <div class="panel-body">
 
-                        <td><input class="form-control" name="name" type="text" ng-required="true" ng-model="newUniversity.name" />
-                            <div ng-show="newUniversityForm.name.$touched && newUniversityForm.name.$invalid ">
-                                <small style="color: red; display: block; text-align:center;">The name cannot be blankc</small>
-                            </div>
-                        </td>
+                    <form name="newUniversityForm">
 
-                        <td><input class="form-control" type="url" required ng-model="newUniversity.url" /></td>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Acronym</th>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                    <th>Country</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
 
-                        <td><input class="form-control" type="text" required ng-model="newUniversity.country" /></td>
+                                    <td><input class="form-control" name="acronym" type="text" ng-required="true" ng-model="newUniversity.acronym" />
+                                        <div ng-show="newUniversityForm.acronym.$touched && newUniversityForm.acronym.$invalid ">
+                                            <small style="color: red; display: block; text-align:center;">The acronym cannot be blank</small>
+                                        </div>
+                                    </td>
 
-                        <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add" ng-disabled="newUniversityForm.$invalid">Add</button>
-                            <button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="university in universities">
-                        <td>{{university.acronym}}</td>
-                        <td>{{university.name}}</td>
-                        <td>{{university.url}}</td>
-                        <td>{{university.country}}</td>
-                        <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
-                        <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+                                    <td><input class="form-control" name="name" type="text" ng-required="true" ng-model="newUniversity.name" />
+                                        <div ng-show="newUniversityForm.name.$touched && newUniversityForm.name.$invalid ">
+                                            <small style="color: red; display: block; text-align:center;">The name cannot be blankc</small>
+                                        </div>
+                                    </td>
+
+                                    <td><input class="form-control" type="url" required ng-model="newUniversity.url" /></td>
+
+                                    <td><input class="form-control" type="text" required ng-model="newUniversity.country" /></td>
+
+                                    <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add" ng-disabled="newUniversityForm.$invalid">Add</button>
+                                        <button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="university in universities">
+                                    <td>{{university.acronym}}</td>
+                                    <td>{{university.name}}</td>
+                                    <td>{{university.url}}</td>
+                                    <td>{{university.country}}</td>
+                                    <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
+                                    <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Search for an university-->
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Search for an university</div>
+                <div class="panel-body">
+                    <form name="seachFornAnUniversity">
+                        <table>
+                            <tr>
+                                <th>
+                                    Acronym:
+                                </th>
+                                <th>
+                                    <input style="margin-left:10px" class="form-control" style="width:200px" size="35" type="text" ng-model="acronym" />
+                                </th>
+                                <th>
+                                    <button type="button" ng-click="searchUniversity(acronym)" style="margin-left:20px" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Search</button>
+                                </th>
+                            </tr>
+                        </table>
+
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Acronym</th>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                    <th>Country</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td><input class="form-control" name="acronym2" type="text" id="a1" value="{{university.acronym}}" placeholder="Acronym" disabled /></td>
+                                <td><input class="form-control" name="Name2" type="text" value="{{university.name}}" placeholder="Name" disabled /></td>
+                                <td><input class="form-control" name="URL2" type="text" value="{{university.url}}" placeholder="URL" disabled /></td>
+                                <td><input class="form-control" name="Country2" type="text" value="{{university.country}}" placeholder="Country" disabled /></td>
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--Search for an university-->
+
+        <!--DELETE-->
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Delete Universities</div>
+                <div class="panel-body">
+                    <button class="btn btn-danger" ng-click="delUniversities()">Delete all</button>
+                </div>
+
+            </div>
+        </div>
+        <!--DELETE-->
+
     </div>
 </body>
 
