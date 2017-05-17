@@ -37,7 +37,7 @@
                 <div class="panel-heading">All Universities</div>
                 <div class="panel-body">
 
-                    <form name="newUniversityForm">
+                    <form name="newUniversityForm" novalidate>
 
                         <table class="table">
                             <thead>
@@ -52,25 +52,28 @@
                             <tbody>
                                 <tr>
 
-                                    <td><input class="form-control" name="acronym" type="text" ng-required="true" ng-model="newUniversity.acronym" />
-                                        <div ng-show="newUniversityForm.acronym.$touched && newUniversityForm.acronym.$invalid ">
-                                            <small style="color: red; display: block; text-align:center;">The acronym cannot be blank</small>
-                                        </div>
+                                    <td><input class="form-control" placeholder="US" name="acronym" type="text" ng-model="newUniversity.acronym" required />
+                                        <p ng-show="newUniversityForm.acronym.$invalid && !newUniversityForm.acronym.$pristine" class="help-block">Acronym is required.</p>
+
                                     </td>
 
-                                    <td><input class="form-control" name="name" type="text" ng-required="true" ng-model="newUniversity.name" />
-                                        <div ng-show="newUniversityForm.name.$touched && newUniversityForm.name.$invalid ">
-                                            <small style="color: red; display: block; text-align:center;">The name cannot be blankc</small>
-                                        </div>
+                                    <td><input class="form-control" placeholder="Universidad de Sevilla" name="name" type="text" ng-required="true" ng-model="newUniversity.name" required/>
+                                        <p ng-show="newUniversityForm.name.$invalid && !newUniversityForm.name.$pristine" class="help-block">Name is required.</p>
                                     </td>
 
-                                    <td><input class="form-control" type="url" required ng-model="newUniversity.url" /></td>
+                                    <td><input class="form-control" placeholder="http://www.us.es" name="url" type="url" required ng-model="newUniversity.url" required/>
+                                        <p ng-show="newUniversityForm.url.$invalid && !newUniversityForm.url.$pristine" class="help-block">Url is required.</p>
+                                    </td>
 
-                                    <td><input class="form-control" type="text" required ng-model="newUniversity.country" /></td>
+                                    <td><input class="form-control" placeholder="Spain" name="country" type="text" required ng-model="newUniversity.country" required/>
+                                     <p ng-show="newUniversityForm.country.$invalid && !newUniversityForm.country.$pristine" class="help-block">Country is required.</p>
+                                    </td>
+                             
 
                                     <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add" ng-disabled="newUniversityForm.$invalid">Add</button>
                                         <button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button>
                                     </td>
+
                                 </tr>
                                 <tr ng-repeat="university in universities">
                                     <td>{{university.acronym}}</td>
