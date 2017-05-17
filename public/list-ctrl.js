@@ -11,7 +11,11 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
         console.log("Adding university " + $scope.newUniversity);
         $http.post("/api/v1/universities", $scope.newUniversity).then(function() {
             refresh();
-            $scope.newUniversity = [];
+            //$scope.newUniversity = [];
+            $scope.newUniversity.acronym = "";
+            $scope.newUniversity.name = "";
+            $scope.newUniversity.url = "";
+            $scope.newUniversity.country = "";
         });
     };
 
