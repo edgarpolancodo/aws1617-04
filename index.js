@@ -2,7 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-
+const cors = require("cors");
 var universities = require("./universities.js");
 
 var port = (process.env.PORT || 3000);
@@ -11,6 +11,10 @@ var base = '/api/v1';
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(cors());
+
+
+
 
 ////REST fot Root elements
 
