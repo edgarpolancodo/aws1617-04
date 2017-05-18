@@ -86,7 +86,7 @@ app.put(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     var updatedUniversity = req.body;
 
-    console.log('name ' + name);
+    console.log('acronym ' + name);
     console.log('name ' + updatedUniversity.name);
 
     universities.update(name, updatedUniversity, (err, numUpdates) => {
