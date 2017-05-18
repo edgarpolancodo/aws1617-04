@@ -4,11 +4,13 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
     function refresh() {
         $http.get("/api/v1/universities").then(function(response) {
             $scope.universities = response.data;
+            $scope.newUniversityForm.$setPristine();
         });
     }
 
     $scope.addUniversity = function() {
         console.log("Adding university " + $scope.newUniversity);
+        $scope.newUniversityForm.$setPristine();
         $http.post("/api/v1/universities", $scope.newUniversity).then(function() {
             refresh();
             //$scope.newUniversity = [];
