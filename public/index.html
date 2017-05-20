@@ -11,25 +11,26 @@
     <script type="text/javascript" src="list-ctrl.js"></script>
     <link rel="icon" href="assets/favicon.png">
 
-    <style>
-        input.ng-invalid.ng-dirty {
-            border: 1px solid red;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="page-header">
-
-            <img src="assets/favicon.png" alt="logo" style="float:left; with:100px; height:100px; " />
-            <h1 style="position:relative; top:30; ">Universities App</h1>
-            <br>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Universities</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="test.html">Tests</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-    <div ng-controller="ListCtrl">
+
+    <div ng-controller="ListCtrl" style="margin-top:50px">
 
         <!--All Universities-->
         <div class="container">
@@ -66,9 +67,9 @@
                                     </td>
 
                                     <td><input class="form-control" placeholder="Spain" name="country" type="text" required ng-model="newUniversity.country" required/>
-                                     <p ng-show="newUniversityForm.country.$invalid && !newUniversityForm.country.$pristine" class="help-block">Country is required.</p>
+                                        <p ng-show="newUniversityForm.country.$invalid && !newUniversityForm.country.$pristine" class="help-block">Country is required.</p>
                                     </td>
-                             
+
 
                                     <td><button class="btn btn-primary" ng-click="addUniversity()" id="boton_add" ng-disabled="newUniversityForm.$invalid">Add</button>
                                         <button style="display:none" class="btn btn-warning" ng-click="editUniversity2(newUniversity.acronym)" id="boton_edit">Save</button>
