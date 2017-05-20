@@ -8,6 +8,13 @@ var universities = require('../universities.js');
 describe('universities', function() {
 
     beforeEach(function(done) {
+        
+        
+        universities.connectDb((err) => {
+            if (err) {
+                return done(err);
+            }
+            
         universities.removeAll(function(err) {
             if (err) {
                 return done(err);
