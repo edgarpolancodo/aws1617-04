@@ -2,7 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-
+const cors = require("cors");
 var universities = require("./universities.js");
 
 var port = (process.env.PORT || 3000);
@@ -11,6 +11,10 @@ var base = '/api/v1';
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(cors());
+
+
+
 
 ////REST fot Root elements
 
@@ -85,9 +89,14 @@ app.delete(base + '/universities/:name', (req, res) => {
 app.put(base + '/universities/:name', (req, res) => {
     var name = req.params.name;
     var updatedUniversity = req.body;
+
+    console.log('acronym ' + name);
+    console.log('name ' + updatedUniversity.name);
+
     universities.update(name, updatedUniversity, (err, numUpdates) => {
         if (numUpdates === 0) {
             res.sendStatus(404);
+            console.log('PUT university ERROR ' + err);
         }
         else {
             console.log('PUT university ' + name);
@@ -96,6 +105,8 @@ app.put(base + '/universities/:name', (req, res) => {
 
     });
 });
+
+
 
 //Run in Postman
 app.get(base + '/tests', (req, res) => {
@@ -117,11 +128,17 @@ app.get(base + '/tests', (req, res) => {
 
 //Server Starter
 
-app.listen(port, () => {
-    console.log('Server is running for 42K...' + process.env.IP);
-
-    loadDummyData();
+universities.connectDb((err) => {
+    if (err) {
+        console.log("Could not connect with MongoDB");
+        process.exit(1);
+    }
+    app.listen(port, () => {
+        console.log("Server with GUI up and running!!");
+        loadDummyData();
+    });
 });
+
 
 //Home Page Hola
 app.get('/', () => {
