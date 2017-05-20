@@ -106,10 +106,6 @@ app.put(base + '/universities/:name', (req, res) => {
     });
 });
 
-
-
-
-
 //Server Starter
 
 universities.connectDb((err) => {
