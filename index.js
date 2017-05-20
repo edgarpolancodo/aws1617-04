@@ -92,7 +92,7 @@ app.put(base + '/universities/:name', (req, res) => {
 
     console.log('acronym ' + name);
     console.log('name ' + updatedUniversity.name);
-
+    delete updatedUniversity._id;
     universities.update(name, updatedUniversity, (err, numUpdates) => {
         if (numUpdates === 0) {
             res.sendStatus(404);
