@@ -19,14 +19,18 @@
                 <a class="navbar-brand" href="#">Universities</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="test.html">Tests</a></li>
-                <li><a href="group.html">Groups</a></li>
+                <li class="active"><a href="group.html">Groups</a></li>
                 <li><a href="#">Page 3</a></li>
             </ul>
         </div>
     </nav>
 
     <h1 style="margin-top:100px">Groups</h1>
+    <div class="ui-widget">
+        <label>Please, select a University: </label>
+        <select chosen option="university" id="universitiesSelect" ng-model="university" ng-change="loadResearchGroups()" ng-options="u.name for u in universities track by u.acronym"></select>
+    </div>
 
 </body>
