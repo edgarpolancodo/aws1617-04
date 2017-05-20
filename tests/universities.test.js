@@ -11,7 +11,7 @@ describe('universities', function() {
         
         
         universities.connectDb((err) => {
-            if (err) {
+            if (err) { 
                 return done(err);
             }
             
