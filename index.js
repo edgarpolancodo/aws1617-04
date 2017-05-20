@@ -11,14 +11,14 @@ var base = '/api/v1';
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(cors());
+//app.use(cors());
 
 
 
 
 ////REST fot Root elements
 
-app.get(base + '/universities', (req, res) => {
+app.get(base + '/universities', cors(), (req, res) => {
     console.log('GET universities');
 
     universities.allUniversities((err, universities) => {
@@ -56,7 +56,7 @@ app.delete(base + '/universities', (req, res) => {
 
 //REST for specific elements
 
-app.get(base + '/universities/:name', (req, res) => {
+app.get(base + '/universities/:name', cors(), (req, res) => {
     var name = req.params.name;
 
     console.log(name);
