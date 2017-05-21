@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body ng-controller="GroupsCtrl">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -29,28 +29,38 @@
         </div>
     </nav>
 
-    <h1 style="margin-top:100px">Groups</h1>
-    <div ng-controller="GroupsCtrl" class="ui-widget">
-        <label>Please, select a group: </label>
-        <select ng-model="selectedOption" ng-options="group.name for group in groups track by group._id" ng-change="getUniversity()">
-        </select><label ng-bind="university_name"></label>
+    <div class="container" style="margin-top:50px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Groups</div>
+            <div class="panel-body">
+                <div class="ui-widget">
+                    <label>Please, select a group: </label>
+                    <select class="form-control" ng-model="selectedOption" ng-options="group.name for group in groups track by group._id" ng-change="getUniversity()">
+                        <option></option>
+                    </select>
+                    <p><h4 ng-bind="university_name"></h4></p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ORCID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="researcher in researches">
+                        <td>{{researcher.orcid}}</label>
+                        </td>
+                        <td>{{researcher.name}}</td>
+                        <td>{{researcher.email}}</td>
+                    </tr>
+                    <table>
+                    </table>
+                </table>
+            </div>
+        </div>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ORCID</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tr ng-repeat="researcher in researches">
-            <td><label ng-bind="researcher.orcid"></label></td>
-            <td>{{researcher.name}}</td>
-            <td>{{researcher.email}}</td>
-        </tr>
-        <table>
-</table>
-    </table>
+    </div>
 
 </body>
 

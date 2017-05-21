@@ -8,16 +8,23 @@ angular.module("UniversityListApp").controller("GroupsCtrl", function($scope, $h
     }
     groups();
     $scope.getUniversity = function(){
+        if(typeof $scope.selectedOption.university != 'undefined'){
         $http.get("/api/v1/universities/"+$scope.selectedOption.university).then(function(response) {
             $scope.university_name = response.data.name;
             $scope.getResearches();
         });
+            
+        }else{
+            $scope.university_name = "";
+            $scope.researches = {};
+        }
+        
     }
     $scope.getResearches = function(){
         $http.get("https://aws1617-02.herokuapp.com/api/v1/researchers?group="+$scope.selectedOption._id, { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTUzNzY5NzksImV4cCI6MTQ5NjU4NjU3OX0.sn0insZkcQFi2KqUaEh39xNNh8kTTx_aHrKnA9hgX94'}})
         .then(function(response) {
             $scope.researches = response.data;
-            console.log($scope.researches);
+            //console.log($scope.researches);
         });
         
     }
