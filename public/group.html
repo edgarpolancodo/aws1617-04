@@ -1,3 +1,5 @@
+<html ng-app="UniversityListApp">
+
 <head>
     <title>Universities App</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
@@ -6,7 +8,7 @@
     <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="university-list-app.js"></script>
-    <script type="text/javascript" src="list-ctrl.js"></script>
+    <script type="text/javascript" src="groups-ctrl.js"></script>
     <link rel="icon" href="assets/favicon.png">
 
 </head>
@@ -28,9 +30,28 @@
     </nav>
 
     <h1 style="margin-top:100px">Groups</h1>
-    <div class="ui-widget">
-        <label>Please, select a University: </label>
-        <select chosen option="university" id="universitiesSelect" ng-model="university" ng-change="loadResearchGroups()" ng-options="u.name for u in universities track by u.acronym"></select>
+    <div ng-controller="GroupsCtrl" class="ui-widget">
+        <label>Please, select a group: </label>
+        <select ng-model="selectedOption" ng-options="group.name for group in groups track by group._id" ng-change="getUniversity()">
+        </select><label ng-bind="university_name"></label>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ORCID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="researcher in researches">
+            <td><label ng-bind="researcher.orcid"></label></td>
+            <td>{{researcher.name}}</td>
+            <td>{{researcher.email}}</td>
+        </tr>
+        <table>
+</table>
+    </table>
 
 </body>
+
+</html>
