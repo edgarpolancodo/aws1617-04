@@ -1,7 +1,7 @@
 angular.module("UniversityListApp").controller("GroupsCtrl", function($scope, $http) {
     function groups() {
         //$scope.groups = {};
-        $http.get("https://aws1617-03.herokuapp.com/api/v1/groups", { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlEwUkJNemt5T1RWQlEwWTFNVFZDUlRjelJUZ3hRMFF4TkVSRVFqWkdOemcyTVVNMk0wWTFSUSJ9.eyJpc3MiOiJodHRwczovL2Rhbmk4YXJ0LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwNzkxNjcwNjI2ODczMjAyNDAwOSIsImF1ZCI6IkVSQnR5eHNpNUpUQ09UWGU3dHFweHpIVWZaV0VLTktUIiwiZXhwIjoxNDk1NDEzMTU0LCJpYXQiOjE0OTUzNzcxNTQsIm5vbmNlIjoidHJHOUNqTElZRmh5d0c3aWtqNi5jd0kweklOMHRkNEkiLCJhdF9oYXNoIjoiSVVhUXdQcEhlbWhQWC04dWJDUFFnQSJ9.s1kGD4e6W8f5QyIZo6gx17WmUMHqi7lsCq8HNmXitlWOyLmRIgT0dGpTWkZivdRwhBCIza66i8HjTnekmelJG8u9D8XMwRddvRbLoBeuTdgQFb-EZ8F_3yGEpOmfk7Mo1-svVIOF5tI8ZGpVlUfhVzhtAgOf4yQsglcNl7LxmpnwKhGmZHrMwPgMQziGwgeZez11sv5mlQECXQqOK9UUIikxnV94cbIk0Q_Hliz8KIyKC9eMj_xCxTOz2Y-OXzkXEiDIr23-0uj10J4yuWU-3iBdJxyK16rnozQtVbEh_Q6GJiFrOoFi2MWE6hNICX6DQNotpbkI4Q74QYq4xscKdQ'}})
+        $http.get("https://aws1617-03.herokuapp.com/api/v1/groups", { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlEwUkJNemt5T1RWQlEwWTFNVFZDUlRjelJUZ3hRMFF4TkVSRVFqWkdOemcyTVVNMk0wWTFSUSJ9.eyJpc3MiOiJodHRwczovL2Rhbmk4YXJ0LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwNzkxNjcwNjI2ODczMjAyNDAwOSIsImF1ZCI6IkVSQnR5eHNpNUpUQ09UWGU3dHFweHpIVWZaV0VLTktUIiwiZXhwIjoxNDk1ODA0MDQ1LCJpYXQiOjE0OTU0NTg0NDUsIm5vbmNlIjoibzVBcVBBd2NIcDF3ZnhyM0tQYnltcllKU1BMcHBrazIiLCJhdF9oYXNoIjoiWC11eFZTT083cGhHb1d3RFhvUVQ5dyJ9.CUdIrsSJUtn67JdhPeeAs97Ywi-ocCIKCYaRbKCEEEyg3MLASVcqOPoS6bYrQFrWoWcjvI1YP_CvJnnZqs34ibjlFpnUHMSTrqpu4H9NbXoBw5X9pe4yuu5_ncBMy7WzPFRvvUKbNS5aZx7XqkyhZdk12l1fMOR71c3-5ZTj2DYn8bTJRN4UaJAVZqyWoS8ViNRzfmYo1gcXzekIvKWcDCrtJVrziV4xd3jbBH9oakvJ_NYs2sK1t5gPZxL83WP8QvaCvbNZMhIiuroe7bZaoe4woYilGrw0iwgqcbSHNmLrMJ0zBI9lg9h6vnRQpIJuAKi5iy27q7NQhqKu4kHwJQ'}})
         .then(function(response) {
             $scope.groups = response.data;
         });
@@ -21,7 +21,7 @@ angular.module("UniversityListApp").controller("GroupsCtrl", function($scope, $h
         
     }
     $scope.getResearches = function(){
-        $http.get("https://aws1617-02.herokuapp.com/api/v1/researchers?group="+$scope.selectedOption._id, { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTUzNzY5NzksImV4cCI6MTQ5NjU4NjU3OX0.sn0insZkcQFi2KqUaEh39xNNh8kTTx_aHrKnA9hgX94'}})
+        $http.get("https://aws1617-02.herokuapp.com/api/v1/researchers?group="+$scope.selectedOption._id, { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTU0NTg3NzksImV4cCI6MTQ5NjY2ODM3OX0.CnZnNOG4veWtbyV2288wehMIvQQWzpt5d0qC1eaM8GY'}})
         .then(function(response) {
             $scope.researches = response.data;
             //console.log($scope.researches);
