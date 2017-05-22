@@ -1,4 +1,5 @@
-<html>
+<html ng-app="UniversityListApp">
+
 <head>
     <title>Universities App</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
@@ -7,51 +8,58 @@
     <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="university-list-app.js"></script>
-    <script type="text/javascript" src="list-ctrl.js"></script>
+    <script type="text/javascript" src="elsevier-ctrl.js"></script>
     <link rel="icon" href="assets/favicon.png">
 
 </head>
 
-<body>
+<body ng-controller="ElsevierCtrl">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Universities</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li class="active"><a href="test.html">Tests</a></li>
+                <li><a href="test.html">Tests</a></li>
                 <li><a href="group.html">Groups</a></li>
                 <li><a href="widget.html">Widget</a></li>
-                <li><a href="elsevier.html">Elsevier</a></li>
+                <li class="active"><a href="elsevier.html">Elsevier</a></li>
                 <li><a href="http://gateway.oai.governify.io/aws1617-04/docs/">API</a></li>
             </ul>
         </div>
     </nav>
 
-    <div  style="margin-top:50px" class="container">
+    <div class="container" style="margin-top:50px">
         <div class="panel panel-primary">
-            <div class="panel-heading">Tests</div>
+            <div class="panel-heading">Documents</div>
             <div class="panel-body">
-                <h1>Let's see :)</h1>
-                <div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="09c3562440e997621d12"></div>
-                <script type="text/javascript">
-                    (function(p, o, s, t, m, a, n) {
-                        !p[s] && (p[s] = function() {
-                            (p[t] || (p[t] = [])).push(arguments);
-                        });
-                        !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
-                            (n = o.createElement("script")),
-                            (n.id = s + t), (n.async = 1), (n.src = m), n
-                        ));
-
-                    }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-                </script>
+                <div class="ui-widget">
+                    <label>Please, select a university: </label>
+                    <select class="form-control" ng-model="selectedOption" ng-options="university.name for university in universities track by university.name" ng-change="getScopus()">
+                        <option></option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>EID</th>
+                            <th>Document title</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="document in documents">
+                        <td>{{document.eid}}</td>
+                        <td><a ng-href="{{document.link[2]['@href']}}">{{document["dc:title"]}}</a></td>
+                    </tr>
+                    <table>
+                    </table>
+                </table>
             </div>
         </div>
     </div>
+    </div>
 
 </body>
+
 </html>
