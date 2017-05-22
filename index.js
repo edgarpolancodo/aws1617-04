@@ -135,10 +135,3 @@ function loadDummyData() {
         universities.add(university);
     });
 }
-
-
-/*app.get(base + '/groups', cors(), (req, res) => {
-    console.log('GET groups');
-    var groups = [{name : "Grupo de investigacion 1", id: "1", university: "US"}, {name : "Grupo de investigacion 2", id: "2", university: "APEC"}]
-    res.send(groups);
-});*/

@@ -9,6 +9,9 @@
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="university-list-app.js"></script>
     <script type="text/javascript" src="list-ctrl.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="icon" href="assets/favicon.png">
 
 </head>
@@ -84,12 +87,36 @@
                                     <td>{{university.country}}</td>
                                     <td><button class="btn btn-danger" ng-click="editUniversity1(university.acronym)">Edit</button></td>
                                     <td><button class="btn btn-danger" ng-click="delUniversity(university.acronym)">Delete</button></td>
+                                    <td>
+                                        <button ng-click="updateLocation(university)" class="btn btn-info" data-toggle="modal" data-target="#myModal2">
+                                        <span  class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </form>
 
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Location</h4>
+                    </div>
+                    <iframe width="598" height="450" frameborder="0" style="border:0" src="{{MapsEmbedAPIKey}}">
+                    </iframe>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 

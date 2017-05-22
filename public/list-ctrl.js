@@ -1,5 +1,6 @@
-angular.module("UniversityListApp").controller("ListCtrl", function($scope, $http) {
+angular.module("UniversityListApp").controller("ListCtrl", function($scope, $http, $sce) {
 
+    // $scope.MapsEmbedAPIKey = $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?q=universidad%20politecnica%20de%20madrid&&key=AIzaSyC7qSNXARnBbzGzSi0p12GgkSAcFqzOxOo");
 
     function refresh() {
         $http.get("/api/v1/universities").then(function(response) {
@@ -13,7 +14,6 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
         $scope.newUniversityForm.$setPristine();
         $http.post("/api/v1/universities", $scope.newUniversity).then(function() {
             refresh();
-            //$scope.newUniversity = [];
             $scope.newUniversity.acronym = "";
             $scope.newUniversity.name = "";
             $scope.newUniversity.url = "";
@@ -55,6 +55,12 @@ angular.module("UniversityListApp").controller("ListCtrl", function($scope, $htt
         $http.get("/api/v1/universities/" + acronym).then(function(response) {
             $scope.university = response.data;
         });
+    };
+
+    $scope.updateLocation = function(university) {
+        var sParameter = encodeURIComponent(university.name.trim());
+        var locmap = "https://www.google.com/maps/embed/v1/place?q=" + sParameter + "&&key=AIzaSyC7qSNXARnBbzGzSi0p12GgkSAcFqzOxOo";
+        $scope.MapsEmbedAPIKey = $sce.trustAsResourceUrl(locmap);
     };
 
     refresh();
