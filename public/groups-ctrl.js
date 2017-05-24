@@ -21,7 +21,7 @@ angular.module("UniversityListApp").controller("GroupsCtrl", function($scope, $h
         
     }
     $scope.getResearches = function(){
-        $http.get("https://aws1617-02.herokuapp.com/api/v1/researchers?group="+$scope.selectedOption._id, { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTU0NTg3NzksImV4cCI6MTQ5NjY2ODM3OX0.CnZnNOG4veWtbyV2288wehMIvQQWzpt5d0qC1eaM8GY'}})
+        $http.get("https://aws1617-02.herokuapp.com/api/v1/researchers?group="+$scope.selectedOption._id, { headers: {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0OTI3NjYyMjQsImV4cCI6MTQ5Mzk3NTgyNH0.WExNusVFHUcM6LKCwp3cz2SudqM1-CWF3DCZZIPNF-E'}})
         .then(function(response) {
             $scope.researches = response.data;
             //console.log($scope.researches);
